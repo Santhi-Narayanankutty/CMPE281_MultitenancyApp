@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+<title>Waterfall</title>
+</head>
+<body>
+<div  ng-app="" ng-controller="personController">
+
+<!--Header-->
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" style="color: #FFFFFF">
+      WaterFall Methedology
+    </div>
+    <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href="" ng-click="waterfallS()">Home</a></li>
+          <li><a href="index">Logout</a></li>
+          </ul>
+        </div>
+  </div>
+</nav>
+
+<div  ng-app="" ng-controller="personController">
+<div layout="column" style="padding-left:100px;">
+		<div class="top-navbar">
+			<md-toolbar layout="row">
+			<h1 class="md-toolbar-tools linked-in-image-padding"
+				layout-align-gt-sm="left">
+			<img
+					src="http://www.brandcrowd.com/gallery/brands/pictures/picture12946347288441.jpg"
+					alt="WaterFall" class="logo" height="132" width="132">
+			</h1>
+			<form name="LoginForm" layout-align-gt-sm="center">
+			<md-content class="md-toolbar-tools">
+		 	</md-content></form></md-toolbar>
+		</div>
+	</div>
+	
+
+
+	
+<div style="padding-left:100px;">
+  <md-content class="md-padding">
+    <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="Project">
+        <md-content class="md-padding">
+          
+          <!-- Code for input Fields  -->
+	<div  layout="column">
+	      <h4>Project Status </h4>
+		   <table>
+		   		 
+		   	    <td "padding-right"=100px> Percent complete
+		     	</td>
+		   		 
+		   		<tr>
+		   			<td>38%
+		   			</td>
+		   		</tr>
+		   </table>
+    </div>	
+          <!-- End of Code for input Fields  -->
+          
+         
+        
+</div>
+	
+</div>
+
+	
+</body>
+<script>
+function personController($scope,$http,$location) {
+ 		loadstatusdata();
+ 		
+ 		function loadstatusdata(){
+	  		$http({
+				  	url: '/getstatusdata', 
+				  	method: "GET",
+				  	data: { "projectname": $scope.project}
+				 	}).success(function(response){
+					           var temp = JSON.parse(response.statusData);
+					           $scope.jsonstatusdata =temp;
+					          	console.log(temp);
+					           //$scope.projectname = jsonsprintdata[0].projectname;
+					          
+					        }).error(function(error){
+					            alert("error");
+					        });
+	  	}
+	  	 function waterfall(){
+	  			$http({
+				  	url: '/waterfall', 
+				  	method: "GET",
+				 	}).success(function(response){
+					           
+					            //alert(JSON.stringify(response));
+					            window.location = '/waterfall';
+					          
+					        }).error(function(error){
+					            alert("error");
+					        });
+					};
+ 		
+ }
+ 
+  
+</script>
+
+</html>
+
+
+
